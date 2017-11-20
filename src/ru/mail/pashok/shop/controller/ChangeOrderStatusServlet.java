@@ -1,8 +1,6 @@
 package ru.mail.pashok.shop.controller;
 
-import ru.mail.pashok.shop.repository.model.StatusEnum;
 import ru.mail.pashok.shop.service.OrderServiceImpl;
-
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;

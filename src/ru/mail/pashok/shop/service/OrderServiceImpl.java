@@ -46,13 +46,6 @@ public class OrderServiceImpl implements OrderService {
         this.lastOrderNumber = lastOrderNumber;
     }
 
-
-//    public List<Order> addOrder(String username, Long idItem, Long quantity, List<Order> basket) {
-//        Order order = new Order(basket.size(), idItem, quantity, username);
-//        basket.add(order);
-//        return basket;
-//    }
-
     @Override
     public boolean addOrderToDatabase(Long userID, List<OrderDTO> basketDTO) {
         System.out.println("addOrderToDatabase: " + basketDTO);
@@ -85,10 +78,6 @@ public class OrderServiceImpl implements OrderService {
 
         return OrderRepositoryImpl.getInstance().getClientOrders(userID);
     }
-
-//    public List<ConfirmedOrder> getAllConfirmedOrders() {
-//        return OrderRepositoryImpl.getInstance().getAllOrders();
-//    }
 
     public void deleteOrderFromDatabase(long id) {
         OrderRepositoryImpl.getInstance().deleteOrderAdmin(id);

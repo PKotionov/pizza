@@ -17,16 +17,13 @@ import java.util.List;
 public class ConfirmOrderServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         UserDTO userDTO = (UserDTO) request.getSession().getAttribute("user");
-        System.out.println(userDTO);
         List<OrderDTO> basket = (List<OrderDTO>) request.getSession().getAttribute("basket");
-        System.out.println(basket);
         if(basket != null){
             OrderServiceImpl.getInstance().addOrderToDatabase(userDTO.getId(), basket);
         }
         request.getSession().setAttribute("basket", new ArrayList<OrderDTO>());
         List<ConfirmedOrder> confirmedOrders = OrderServiceImpl.getInstance().getConfirmedOrders(userDTO.getId());
         request.setAttribute("orders", confirmedOrders);
-        System.out.println("confirmedOrders:" + confirmedOrders);
         double sum = 0;
         for (ConfirmedOrder order : confirmedOrders) {
             sum += order.getSumPrice();

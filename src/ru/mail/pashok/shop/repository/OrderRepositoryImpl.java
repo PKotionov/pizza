@@ -166,51 +166,6 @@ public class OrderRepositoryImpl implements OrderRepository {
         return null;
     }
 
-//    public List<ConfirmedOrder> getAllOrders() {
-//        List<ConfirmedOrder> orders = new ArrayList<>();
-//        connection = connectionService.getConnection();
-//        try (PreparedStatement statement = connection.prepareStatement(
-//                "SELECT f_id, f_userID, f_itemID, f_quantity, f_orderNumber, f_statusID FROM t_order")) {
-//            System.out.println("result set started");
-//            ResultSet resultSet = statement.executeQuery();
-//            while (resultSet.next()) {
-//                System.out.println("while started");
-//                Integer id = Integer.valueOf((resultSet.getString("f_id")));
-//                System.out.println("id " + id);
-//                Long userID = resultSet.getLong("f_userID");
-//                System.out.println("userID " + userID);
-//                Long itemID = resultSet.getLong("f_itemID");
-//                System.out.println("itemID " + itemID);
-//                Long quantity = resultSet.getLong("f_quantity");
-//                System.out.println(quantity);
-//                Long orderNumber = resultSet.getLong("f_orderNumber");
-//                System.out.println(orderNumber);
-//                int statusID = resultSet.getInt("f_statusID");
-//                System.out.println(statusID);
-//                StatusEnum status = StatusEnum.getStatusFromStatusID(statusID);
-//                System.out.println(status);
-//                Order order = new Order(id, itemID, quantity, userID);
-//                orders.add(new ConfirmedOrder(order, status, orderNumber));
-//            }
-//            System.out.println("while finished");
-//            resultSet.close();
-//            return orders;
-//        } catch (SQLException e1) {
-//            System.out.println(e1.getMessage());
-//            e1.printStackTrace();
-//        } finally {
-//            if (connection != null) {
-//                try {
-//                    connection.close();
-//                } catch (SQLException e) {
-//                    System.out.println(e.getMessage());
-//                }
-//            }
-//        }
-//        return null;
-//    }
-
-
     public List<UserOrder> getUserOrders() {
         List<UserOrder> orders = new ArrayList<>();
         connection = connectionService.getConnection();
