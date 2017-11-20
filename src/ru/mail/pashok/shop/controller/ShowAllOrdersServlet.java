@@ -14,15 +14,15 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ShowAllOrdersServlet extends HttpServlet {
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        List<ConfirmedOrder> confirmedOrders = OrderServiceImpl.getInstance().getAllConfirmedOrders();
-        request.setAttribute("orders", confirmedOrders);
-        System.out.println(confirmedOrders);
-        double sum = 0;
-        for (ConfirmedOrder order : confirmedOrders) {
-            sum+= order.getSumPrice();
-        }
-        request.setAttribute("sum", sum);
-        request.getRequestDispatcher("/WEB-INF/pages/showAllOrders.jsp").forward(request, response);
-    }
+//    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+//        List<ConfirmedOrder> confirmedOrders = OrderServiceImpl.getInstance().getAllConfirmedOrders();
+//        request.setAttribute("orders", confirmedOrders);
+//        System.out.println(confirmedOrders);
+//        double sum = 0;
+//        for (ConfirmedOrder order : confirmedOrders) {
+//            sum+= order.getSumPrice();
+//        }
+//        request.setAttribute("sum", sum);
+//        request.getRequestDispatcher("/WEB-INF/pages/showAllOrders.jsp").forward(request, response);
+//    }
 }

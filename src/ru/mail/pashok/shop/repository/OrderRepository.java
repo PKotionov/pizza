@@ -22,7 +22,7 @@ public interface OrderRepository {
 
     List<ConfirmedOrder> getClientOrders(Long userID);
 
-    List<ConfirmedOrder> getAllOrders();
+  //  List<ConfirmedOrder> getAllOrders();
 
     List<UserOrder> getUserOrders();
 

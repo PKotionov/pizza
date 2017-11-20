@@ -86,9 +86,9 @@ public class OrderServiceImpl implements OrderService {
         return OrderRepositoryImpl.getInstance().getClientOrders(userID);
     }
 
-    public List<ConfirmedOrder> getAllConfirmedOrders() {
-        return OrderRepositoryImpl.getInstance().getAllOrders();
-    }
+//    public List<ConfirmedOrder> getAllConfirmedOrders() {
+//        return OrderRepositoryImpl.getInstance().getAllOrders();
+//    }
 
     public void deleteOrderFromDatabase(long id) {
         OrderRepositoryImpl.getInstance().deleteOrderAdmin(id);
