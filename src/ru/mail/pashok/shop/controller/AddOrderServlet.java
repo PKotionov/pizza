@@ -20,7 +20,6 @@ import java.util.List;
  */
 public class AddOrderServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-   //     String username = (String) request.getSession().getAttribute("username");
         UserDTO userDTO = (UserDTO) request.getSession().getAttribute("user");
         long idItem = Long.valueOf(request.getParameter("id"));
         String quantityString = request.getParameter("quantity");
@@ -33,7 +32,6 @@ public class AddOrderServlet extends HttpServlet {
             if (quantity > 0) {
                 basket.add(new OrderDTO(basket.size()+1, ItemServiceImpl.getInstance().getItem(idItem), quantity, userDTO.getId()));
                 request.getSession().setAttribute("basket", basket);
-             //   OrderServiceImpl.getInstance().addOrder(username, idItem, quantity, basket);
                 response.sendRedirect("/user/items");
             } else {
                 response.sendRedirect("/user/items");
