@@ -58,8 +58,6 @@ public class OrderServiceImpl implements OrderService {
     }
 
     public List<OrderDTO> deleteOrder(Integer id, List<OrderDTO> basket) {
-        System.out.println("in service: " + basket);
-        System.out.println("delete id: " + id);
         for (int i = 0; i < basket.size(); i++) {
             if (basket.get(i).getId() == id) {
                 basket.remove(i);
@@ -99,6 +97,7 @@ public class OrderServiceImpl implements OrderService {
 
     public List<Order> getOrderDetails(Long orderNumber) {
         List<Order> orders = OrderRepositoryImpl.getInstance().getOrdersByOrderNumber(orderNumber);
+
         return orders;
     }
 

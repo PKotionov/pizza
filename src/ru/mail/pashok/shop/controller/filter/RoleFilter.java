@@ -1,13 +1,9 @@
-package ru.mail.pashok.shop.controller.Filter;
+package ru.mail.pashok.shop.controller.filter;
 
-import ru.mail.pashok.shop.repository.model.Role;
-import ru.mail.pashok.shop.repository.model.User;
 import ru.mail.pashok.shop.service.UserServiceImpl;
 import ru.mail.pashok.shop.service.model.RoleDTO;
-import ru.mail.pashok.shop.service.model.UserDTO;
 
 import javax.servlet.*;
-import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;

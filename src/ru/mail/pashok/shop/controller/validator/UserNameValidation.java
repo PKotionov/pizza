@@ -11,7 +11,7 @@ public class UserNameValidation {
         if (username.trim().length() > 21) {
             errors.add("Length of username more than 20 letters.Check username.");
         }
-        if (username == null || username.trim() == "") {
+        if (username.equals("")) {
             errors.add("Please, enter your username.");
         }
         return errors;

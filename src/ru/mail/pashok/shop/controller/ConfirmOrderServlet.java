@@ -18,17 +18,23 @@ public class ConfirmOrderServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         UserDTO userDTO = (UserDTO) request.getSession().getAttribute("user");
         List<OrderDTO> basket = (List<OrderDTO>) request.getSession().getAttribute("basket");
-        if(basket != null){
+        if(basket.size() != 0){
+            System.out.println(basket);
             OrderServiceImpl.getInstance().addOrderToDatabase(userDTO.getId(), basket);
         }
         request.getSession().setAttribute("basket", new ArrayList<OrderDTO>());
         List<ConfirmedOrder> confirmedOrders = OrderServiceImpl.getInstance().getConfirmedOrders(userDTO.getId());
         request.setAttribute("orders", confirmedOrders);
+        double sum = getSum(confirmedOrders);
+        request.setAttribute("sum", sum);
+        request.getRequestDispatcher("/WEB-INF/pages/showConfirmedOrders.jsp").forward(request, response);
+    }
+
+    private double getSum(List<ConfirmedOrder> confirmedOrders) {
         double sum = 0;
         for (ConfirmedOrder order : confirmedOrders) {
             sum += order.getSumPrice();
         }
-        request.setAttribute("sum", sum);
-        request.getRequestDispatcher("/WEB-INF/pages/showConfirmedOrders.jsp").forward(request, response);
+        return sum;
     }
 }

@@ -60,14 +60,6 @@
         <url-pattern>/admin/delete/order</url-pattern>
     </servlet-mapping>
     <servlet>
-        <servlet-name>ShowAllOrders</servlet-name>
-        <servlet-class>ru.mail.pashok.shop.controller.ShowAllOrdersServlet</servlet-class>
-    </servlet>
-    <servlet-mapping>
-        <servlet-name>ShowAllOrders</servlet-name>
-        <url-pattern>/admin/orders</url-pattern>
-    </servlet-mapping>
-    <servlet>
         <servlet-name>ChangeOrderStatusServlet</servlet-name>
         <servlet-class>ru.mail.pashok.shop.controller.ChangeOrderStatusServlet</servlet-class>
     </servlet>
@@ -125,14 +117,6 @@
         <url-pattern>/user/orders</url-pattern>
     </servlet-mapping>
     <servlet>
-        <servlet-name>BasketServlet</servlet-name>
-        <servlet-class>ru.mail.pashok.shop.controller.BasketServlet</servlet-class>
-    </servlet>
-    <servlet-mapping>
-        <servlet-name>BasketServlet</servlet-name>
-        <url-pattern>/user/basket</url-pattern>
-    </servlet-mapping>
-    <servlet>
         <servlet-name>ConfirmOrderServlet</servlet-name>
         <servlet-class>ru.mail.pashok.shop.controller.ConfirmOrderServlet</servlet-class>
     </servlet>
@@ -148,9 +132,33 @@
         <servlet-name>ChangeQuantityItemsServlet</servlet-name>
         <url-pattern>/user/order/quantity</url-pattern>
     </servlet-mapping>
+    <servlet>
+        <servlet-name>ShowCreditCardsToUserServlet</servlet-name>
+        <servlet-class>ru.mail.pashok.shop.controller.ShowCreditCardsToUserServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ShowCreditCardsToUserServlet</servlet-name>
+        <url-pattern>/user/cards</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>AddNewCardByUserServlet</servlet-name>
+        <servlet-class>ru.mail.pashok.shop.controller.AddNewCardByUserServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>AddNewCardByUserServlet</servlet-name>
+        <url-pattern>/user/card/new</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>InputNewCardByUserServlet</servlet-name>
+        <servlet-class>ru.mail.pashok.shop.controller.InputNewCardByUserServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>InputNewCardByUserServlet</servlet-name>
+        <url-pattern>/user/card/new/input</url-pattern>
+    </servlet-mapping>
     <filter>
     <filter-name>RoleFilter</filter-name>
-    <filter-class>ru.mail.pashok.shop.controller.Filter.RoleFilter</filter-class>
+    <filter-class>ru.mail.pashok.shop.controller.filter.RoleFilter</filter-class>
     </filter>
     <filter-mapping>
     <filter-name>RoleFilter</filter-name>

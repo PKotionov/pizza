@@ -40,6 +40,15 @@
             </div>
             <div class="col-lg-4"></div>
         </div>
+    <div class="row">
+        <div class="col-lg-4"></div>
+        <div class="col-lg-4">
+            <form action="${pageContext.request.contextPath}/user/cards" method="get">
+                <button type="submit" class="btn">Credit cards</button>
+            </form>
+        </div>
+        <div class="col-lg-4"></div>
+    </div>
 </div>
 </body>
 </html>

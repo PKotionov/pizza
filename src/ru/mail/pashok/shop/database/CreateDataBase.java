@@ -1,4 +1,4 @@
-package ru.mail.pashok.shop.createSQL;
+package ru.mail.pashok.shop.database;
 
 import java.io.*;
 import java.sql.Connection;
@@ -11,7 +11,7 @@ import java.sql.Statement;
  */
 public class CreateDataBase {
     public static void main(String[] args) {
-        File file = new File(".\\src\\ru\\mail\\pashok\\shop\\createSQL\\databases.txt");
+        File file = new File(".\\src\\ru\\mail\\pashok\\shop\\database\\databases.txt");
         if (file.exists()) {
             createTables(file);
         } else {

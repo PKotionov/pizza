@@ -1,5 +1,6 @@
 package ru.mail.pashok.shop.repository;
 
+import ru.mail.pashok.shop.repository.model.Card;
 import ru.mail.pashok.shop.repository.model.User;
 import ru.mail.pashok.shop.service.model.UserDTO;
 
@@ -142,14 +143,75 @@ public class UserRepositoryImpl implements UserRepository {
     public void deleteUser(long id) {
         connection = connectionService.getConnection();
         try (PreparedStatement statement = connection.prepareStatement(
-        "DELETE from t_user where f_id = ?")){
+                "DELETE FROM t_user WHERE f_id = ?")) {
             statement.setLong(1, id);
             statement.executeUpdate();
             statement.close();
         } catch (SQLException e) {
             System.out.println(e.getMessage());
             e.printStackTrace();
-        }finally {
+        } finally {
+            if (connection != null) {
+                try {
+                    connection.close();
+                } catch (SQLException e) {
+                    System.out.println(e.getMessage());
+                }
+            }
+        }
+    }
+
+    @Override
+    public List<Card> getCardList(Long userId) {
+        connection = connectionService.getConnection();
+        try (PreparedStatement statement = connection.prepareStatement(
+                "SELECT f_id, f_userID, f_cardNumber, f_month, f_year, f_description FROM t_card WHERE f_userID = ?")) {
+            statement.setLong(1, userId);
+            ResultSet resultSet = statement.executeQuery();
+            List<Card> cards = new ArrayList<>();
+            while (resultSet.next()) {
+                Long id = resultSet.getLong("f_id");
+                Long userID = resultSet.getLong("f_userID");
+                String cardNumber = resultSet.getString("f_cardNumber");
+                Integer month = resultSet.getInt("f_month");
+                Integer year = resultSet.getInt("f_year");
+                String description = resultSet.getString("f_description");
+                String username = getByUserID(userID).getUsername();
+                cards.add(new Card(id, userID, cardNumber, description, username, year, month));
+            }
+            statement.close();
+            return cards;
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+            e.printStackTrace();
+        } finally {
+            if (connection != null) {
+                try {
+                    connection.close();
+                } catch (SQLException e) {
+                    System.out.println(e.getMessage());
+                }
+            }
+        }
+        return null;
+    }
+
+    @Override
+    public void addNewCardToDataBase(Card card) {
+        connection = connectionService.getConnection();
+        try (PreparedStatement statement = connection.prepareStatement(
+                "INSERT INTO t_card(f_userID, f_cardNumber, f_month, f_year, f_description) VALUES(?, ?, ?, ?, ?)")){
+                statement.setLong(1, card.getUserID());
+                statement.setString(2, card.getCardNumber());
+            statement.setInt(3, card.getMonth());
+            statement.setInt(4, card.getYear());
+            statement.setString(5, card.getDescription());
+            statement.executeUpdate();
+            statement.close();
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+        finally {
             if (connection != null) {
                 try {
                     connection.close();

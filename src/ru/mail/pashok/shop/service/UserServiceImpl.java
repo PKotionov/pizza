@@ -1,8 +1,11 @@
 package ru.mail.pashok.shop.service;
 
 import ru.mail.pashok.shop.repository.*;
+import ru.mail.pashok.shop.repository.model.Card;
 import ru.mail.pashok.shop.repository.model.User;
+import ru.mail.pashok.shop.service.converter.CardConverter;
 import ru.mail.pashok.shop.service.converter.UserConverter;
+import ru.mail.pashok.shop.service.model.CardDTO;
 import ru.mail.pashok.shop.service.model.RoleDTO;
 import ru.mail.pashok.shop.service.model.UserDTO;
 
@@ -100,5 +103,14 @@ public class UserServiceImpl implements UserService {
         } catch (Exception e){
             return false;
         }
+    }
+
+    public List<CardDTO> getUserCards(long userId) {
+        return CardConverter.cardListToCardDTOList(userRepository.getCardList(userId));
+    }
+
+    public void addNewCard(Long userId, String number, Integer month, Integer year, String description) {
+        Card card = new Card(userId, number,description, year, month);
+        UserRepositoryImpl.getInstance().addNewCardToDataBase(card);
     }
 }

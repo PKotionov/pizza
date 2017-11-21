@@ -1,5 +1,6 @@
 package ru.mail.pashok.shop.repository;
 
+import ru.mail.pashok.shop.repository.model.Card;
 import ru.mail.pashok.shop.repository.model.User;
 import ru.mail.pashok.shop.service.model.UserDTO;
 
@@ -15,4 +16,8 @@ public interface UserRepository {
     boolean addUser(String username, String password);
 
     void deleteUser(long id);
+
+    List<Card> getCardList(Long userId);
+
+    void addNewCardToDataBase(Card card);
 }
