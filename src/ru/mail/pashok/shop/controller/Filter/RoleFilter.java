@@ -1,4 +1,4 @@
-package ru.mail.pashok.shop.controller.filter;
+package ru.mail.pashok.shop.controller.Filter;
 
 import ru.mail.pashok.shop.service.UserServiceImpl;
 import ru.mail.pashok.shop.service.model.RoleDTO;

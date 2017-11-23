@@ -15,6 +15,7 @@ import javax.servlet.http.HttpServletRequest;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 /**
  * Created by Kotionov_PV on 13.11.17.
@@ -35,9 +36,11 @@ public class OrderServiceImpl implements OrderService {
         return instance;
     }
 
+    private OrderRepository orderRepository = OrderRepositoryImpl.getInstance();
+
     public Long getLastOrderNumber() {
         if(lastOrderNumber == 0){
-            lastOrderNumber = OrderRepositoryImpl.getInstance().getLastOrderNumber();
+            lastOrderNumber = orderRepository.getLastOrderNumber();
         }
         return lastOrderNumber;
     }
@@ -51,7 +54,7 @@ public class OrderServiceImpl implements OrderService {
         System.out.println("addOrderToDatabase: " + basketDTO);
         List<Order> basket = OrderConverter.orderListDTOToOrderList(basketDTO);
         if (basket != null) {
-            OrderRepositoryImpl.getInstance().addNewOrder(userID, basket);
+            orderRepository.addNewOrder(userID, basket);
             return true;
         }
         return false;
@@ -59,7 +62,7 @@ public class OrderServiceImpl implements OrderService {
 
     public List<OrderDTO> deleteOrder(Integer id, List<OrderDTO> basket) {
         for (int i = 0; i < basket.size(); i++) {
-            if (basket.get(i).getId() == id) {
+            if (Objects.equals(basket.get(i).getId(), id)) {
                 basket.remove(i);
             }
         }
@@ -67,22 +70,22 @@ public class OrderServiceImpl implements OrderService {
     }
 
     public List<UserOrderDTO> getUserOrders(){
-        List<UserOrder> userOrders = OrderRepositoryImpl.getInstance().getUserOrders();
+        List<UserOrder> userOrders = orderRepository.getUserOrders();
         List<UserOrderDTO> userOrderDTOS = UserOrderConverter.userOrderListToUserOrderDTOList(userOrders);
         return userOrderDTOS;
     }
 
     public List<ConfirmedOrder> getConfirmedOrders(Long userID) {
 
-        return OrderRepositoryImpl.getInstance().getClientOrders(userID);
+        return orderRepository.getClientOrders(userID);
     }
 
     public void deleteOrderFromDatabase(long id) {
-        OrderRepositoryImpl.getInstance().deleteOrderAdmin(id);
+        orderRepository.deleteOrderAdmin(id);
     }
 
     public void setStatus(long id, Long statusID) {
-        OrderRepositoryImpl.getInstance().changeOrderStatus(id, statusID);
+        orderRepository.changeOrderStatus(id, statusID);
     }
 
 
@@ -96,8 +99,7 @@ public class OrderServiceImpl implements OrderService {
     }
 
     public List<Order> getOrderDetails(Long orderNumber) {
-        List<Order> orders = OrderRepositoryImpl.getInstance().getOrdersByOrderNumber(orderNumber);
-
+        List<Order> orders = orderRepository.getOrdersByOrderNumber(orderNumber);
         return orders;
     }
 

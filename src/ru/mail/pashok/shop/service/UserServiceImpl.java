@@ -61,14 +61,6 @@ public class UserServiceImpl implements UserService {
         return null;
     }
 
-    public Long getUserId(String username) {
-        User user = userRepository.getByUserName(username);
-        if (user != null) {
-            return UserConverter.userToUserDTO(user).getId();
-        }
-        return null;
-    }
-
     @Override
     public boolean isUserValid(String username, String password) {
         User user = userRepository.getByUserName(username);
@@ -89,7 +81,7 @@ public class UserServiceImpl implements UserService {
 
     public boolean addUser(String username, String password) {
         try {
-            UserRepositoryImpl.getInstance().addUser(username, password);
+            userRepository.addUser(username, password);
             return true;
         } catch (Exception e) {
             return false;
@@ -98,7 +90,7 @@ public class UserServiceImpl implements UserService {
 
     public boolean deleteUser(long id) {
         try {
-            UserRepositoryImpl.getInstance().deleteUser(id);
+            userRepository.deleteUser(id);
             return true;
         } catch (Exception e){
             return false;
@@ -111,6 +103,6 @@ public class UserServiceImpl implements UserService {
 
     public void addNewCard(Long userId, String number, Integer month, Integer year, String description) {
         Card card = new Card(userId, number,description, year, month);
-        UserRepositoryImpl.getInstance().addNewCardToDataBase(card);
+        userRepository.addNewCardToDataBase(card);
     }
 }
